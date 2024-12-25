@@ -51,7 +51,7 @@ end;
 
 function TModelServiceTask.GetInfos: string;
 begin
-  result := Fapi.Get('tasks/infos/')
+  result := Fapi.Get('task/infos/')
 end;
 
 function TModelServiceTask.GetTasks: string;

@@ -25,6 +25,12 @@ type
     Button_deletar: TButton;
     Button_editar: TButton;
     StringGrid1: TStringGrid;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit_allQtd: TEdit;
+    Edit_avgPriority: TEdit;
+    Edit3_qtdDone: TEdit;
     procedure FormShow(Sender: TObject);
     procedure Button_buscarClick(Sender: TObject);
     procedure Button_novoClick(Sender: TObject);
@@ -54,6 +60,9 @@ uses
 procedure TpageListTasks.Button_buscarClick(Sender: TObject);
 begin
   Fcontroller.business.ListTasks.DisplayTasks(StringGrid1);
+  FController.business
+    .ListTasks
+      .DisplayInfos(Edit_allQtd, Edit_avgPriority, Edit3_qtdDone);
 end;
 
 procedure TpageListTasks.Button_deletarClick(Sender: TObject);
@@ -130,7 +139,7 @@ procedure TpageListTasks.FormShow(Sender: TObject);
 begin
 
   Fcontroller := TController.new;
-
+  Button_buscarClick(Sender);
 end;
 
 end.

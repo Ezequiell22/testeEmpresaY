@@ -5,7 +5,7 @@ interface
 uses
   comercial.model.business.interfaces,
   comercial.model.service.interfaces,
-  System.JSON, Vcl.Grids;
+  System.JSON, Vcl.Grids, Vcl.StdCtrls;
 
 type
   TModelBusinessListTasks = class(TInterfacedObject, iModelBusinessListTasks)
@@ -18,6 +18,8 @@ type
     destructor Destroy; override;
     class function New: iModelBusinessListTasks;
     procedure DisplayTasks(aGrid: TstringGrid);
+    procedure DisplayInfos(
+    edtQtdAll, edtAvgPriority, edtQtdDone : TEdit);
   end;
 
 implementation
@@ -37,6 +39,33 @@ end;
 destructor TModelBusinessListTasks.Destroy;
 begin
   inherited;
+end;
+
+procedure TModelBusinessListTasks.DisplayInfos(edtQtdAll, edtAvgPriority,
+  edtQtdDone: TEdit);
+  var respStr : string;
+  RespJson: TJsonObject;
+  DataValue : TJsonValue;
+begin
+
+  respStr := FModelServiceTask
+    .GetInfos;
+  try
+    RespJson := TJsonObject.ParseJSONValue(RespStr) as TJsonObject;
+    if Assigned(RespJson) then
+    begin
+      DataValue := RespJson.GetValue('data');
+
+      edtQtdAll.Text := DataValue.GetValue<string>('qtdAll');
+      edtAvgPriority.Text := DataValue.GetValue<string>('avgPriority');
+      edtQtdDone.Text := DataValue.GetValue<string>('qtdDone');
+    end
+    else
+      raise Exception.Create('A resposta não é um objeto JSON válido.');
+  finally
+    RespJson.Free;
+  end;
+
 end;
 
 procedure TModelBusinessListTasks.DisplayTasks(aGrid: TstringGrid);
@@ -69,6 +98,7 @@ begin
       for Pair in JsonObj do
       begin
         aGrid.Cells[J, I + 1] := Pair.JsonValue.Value;
+        aGrid.ColWidths[J] := Length(Pair.JsonValue.Value) + 100;
         Inc(J);
       end;
     end;

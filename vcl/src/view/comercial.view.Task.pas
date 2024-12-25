@@ -30,9 +30,8 @@ type
     ComboBox_status: TComboBox;
     Button_salvar: TButton;
     procedure FormShow(Sender: TObject);
-    procedure Button_selecionaClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
+    procedure Button_salvarClick(Sender: TObject);
   private
     { Private declarations }
     Fcontroller: iController;
@@ -41,7 +40,6 @@ type
     procedure FixComboBoxStatus;
   public
     { Public declarations }
-    procedure BuscaDados;
   end;
 
 var
@@ -55,28 +53,9 @@ uses
 
 {$R *.dfm}
 
-procedure TpageTask.BuscaDados;
+procedure TpageTask.Button_salvarClick(Sender: TObject);
 begin
-  //
-  // Fcontroller
-  // .business
-  // .Empresa
-  // .idEmpresa(strTointDef(Edit_idEmpresa.Text,0))
-  // .LinkDataSourceEnderecos(DataSource_enderecos)
-  // .LinkDataSourceEmpresa(DataSource_empresa)
-  // .SearchData;
-  //
-  // Edit_nome.Text := DataSource_empresa
-  // .DataSet.FieldByName('nmempresa').AsString;
-  //
-  // Edit_cnpj.Text := DataSource_empresa
-  // .DataSet.FieldByName('nucnpj').AsString;
-end;
-
-procedure TpageTask.Button_selecionaClick(Sender: TObject);
-begin
-  SalvarDados;
-
+   SalvarDados
 end;
 
 procedure TpageTask.FixComboBoxPriority;
@@ -114,11 +93,6 @@ begin
 
 end;
 
-procedure TpageTask.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  SalvarDados
-end;
-
 procedure TpageTask.FormCreate(Sender: TObject);
 begin
    FixComboBoxStatus;
@@ -135,6 +109,32 @@ end;
 procedure TpageTask.SalvarDados;
 begin
 
+  if Edit_id.ReadOnly then
+  begin
+    Fcontroller
+      .business
+        .Task
+          .Id( strToInt(Edit_id.Text))
+          .Status(ComboBox_status.ItemIndex )
+        .UpdateTask;
+
+    ShowMessage('Tarefa atualizada');
+  end
+  else
+  begin
+    if Edit_description.Text = EmptyStr then
+      raise Exception.Create('Descrição inválida');
+
+    Fcontroller
+      .business
+        .Task
+          .Priority( ComboBox1_priority.ItemIndex  )
+          .Description(Edit_description.Text).CreateTask;
+
+    ShowMessage('Tarefa criada');
+  end;
+
+  self.Close;
 end;
 
 end.

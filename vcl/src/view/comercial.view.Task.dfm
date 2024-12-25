@@ -13,7 +13,6 @@ object pageTask: TpageTask
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poScreenCenter
-  OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
   TextHeight = 15
@@ -90,5 +89,6 @@ object pageTask: TpageTask
     Height = 25
     Caption = 'Salvar'
     TabOrder = 4
+    OnClick = Button_salvarClick
   end
 end

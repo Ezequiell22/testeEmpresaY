@@ -183,7 +183,7 @@ var
   JsonArray: TJSONArray;
   JsonObject: TJsonObject;
   StrStatus, strPriority: string;
-  iStatus , iPriority : integer;
+  iStatus, iPriority: integer;
 begin
   JsonArray := TJSONArray.Create;
   FDataResult := TJsonObject.Create;
@@ -196,10 +196,10 @@ begin
     DataSetTemp.First;
     while not DataSetTemp.Eof do
     begin
-      iStatus := DataSetTemp.FieldByName('status').asInteger;
-      iPriority := DataSetTemp.FieldByName('priority').asInteger;
-      StrStatus := GetEnumName(TypeInfo(TpStatus), iStatus);
-      strPriority := GetEnumName(TypeInfo(TpPriority), iPriority) ;
+      iStatus := DataSetTemp.FieldByName('status').AsInteger;
+      iPriority := DataSetTemp.FieldByName('priority').AsInteger;
+      StrStatus := GetEnumName(TypeInfo(tpStatus), iStatus);
+      strPriority := GetEnumName(TypeInfo(TpPriority), iPriority);
 
       JsonObject := TJsonObject.Create;
       try
@@ -252,10 +252,9 @@ begin
   qtdDone := fdataSetTemp.FieldByName('qtdDone').AsInteger;
 
   JsonObject := TJsonObject.Create;
-  JsonObject.AddPair('Total de tarefas', allQtd);
-  JsonObject.AddPair('Média de prioridade das tarefas pendentes', avgPriority);
-  JsonObject.AddPair
-    ('Quantidade de tarefas concluídas nos últimos 7 dias', qtdDone);
+  JsonObject.AddPair('qtdAll', allQtd);
+  JsonObject.AddPair('avgPriority', avgPriority);
+  JsonObject.AddPair('qtdDone', qtdDone);
 
   FDataResult.AddPair('data', JsonObject);
   FDataResult.AddPair('statusCode', 200);

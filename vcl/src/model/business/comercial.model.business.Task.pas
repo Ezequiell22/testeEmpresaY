@@ -12,7 +12,7 @@ type
     Fid: integer;
     FDescription: String;
     FPriority: integer;
-    Fstatus: string;
+    Fstatus: integer;
     FModelServiceTask: iModelServiceTask;
   public
     constructor Create;
@@ -20,7 +20,7 @@ type
     class function New: iModelBusinessTask;
     function Id(aValue: integer): iModelBusinessTask;
     function Description(aValue: string): iModelBusinessTask;
-    function Status(aValue: string): iModelBusinessTask;
+    function Status(aValue: integer): iModelBusinessTask;
     function Priority(aValue: integer): iModelBusinessTask;
     function DeleteTask: iModelBusinessTask;
     function CreateTask: iModelBusinessTask;
@@ -109,9 +109,10 @@ end;
 function TModelBusinessTask.Priority(aValue: integer): iModelBusinessTask;
 begin
   result := Self;
+  FPriority := aValue;
 end;
 
-function TModelBusinessTask.Status(aValue: string): iModelBusinessTask;
+function TModelBusinessTask.Status(aValue: integer): iModelBusinessTask;
 begin
   result := Self;
   Fstatus := aValue;

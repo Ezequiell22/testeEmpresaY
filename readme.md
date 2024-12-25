@@ -1,6 +1,6 @@
 ### VIEW
 
-create view task_infos as
+alter view task_infos as
 
 SELECT 
     A.allqtd,
@@ -9,7 +9,7 @@ SELECT
 FROM 
     (SELECT COUNT(id) allqtd FROM task) AS A
 CROSS JOIN 
-    (SELECT AVG(priority) AS avgpriority 
+    (SELECT AVG(priority + 1) AS avgpriority 
 	FROM task WHERE UPPER(status) <> 'PENDENT') AS B
 CROSS JOIN 
     (SELECT COUNT(id) AS qtddone 

@@ -5,7 +5,7 @@ object pageListTasks: TpageListTasks
   BorderStyle = bsSingle
   Caption = 'Listagem de tarefas'
   ClientHeight = 612
-  ClientWidth = 462
+  ClientWidth = 783
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,6 +15,27 @@ object pageListTasks: TpageListTasks
   Position = poScreenCenter
   OnShow = FormShow
   TextHeight = 15
+  object Label1: TLabel
+    Left = 64
+    Top = 63
+    Width = 125
+    Height = 15
+    Caption = 'N'#250'mero total de tarefas'
+  end
+  object Label2: TLabel
+    Left = 64
+    Top = 87
+    Width = 223
+    Height = 15
+    Caption = 'M'#233'dia de prioridade das tarefas pendentes'
+  end
+  object Label3: TLabel
+    Left = 64
+    Top = 111
+    Width = 274
+    Height = 15
+    Caption = 'Quantidade de tarefas conclu'#237'das nos '#250'ltimos 7 dias'
+  end
   object Button_buscar: TButton
     Left = 250
     Top = 16
@@ -53,10 +74,30 @@ object pageListTasks: TpageListTasks
   end
   object StringGrid1: TStringGrid
     Left = 0
-    Top = 50
-    Width = 462
-    Height = 562
-    Align = alBottom
+    Top = 146
+    Width = 785
+    Height = 466
     TabOrder = 4
+  end
+  object Edit_allQtd: TEdit
+    Left = 9
+    Top = 60
+    Width = 49
+    Height = 23
+    TabOrder = 5
+  end
+  object Edit_avgPriority: TEdit
+    Left = 9
+    Top = 84
+    Width = 49
+    Height = 23
+    TabOrder = 6
+  end
+  object Edit3_qtdDone: TEdit
+    Left = 9
+    Top = 108
+    Width = 49
+    Height = 23
+    TabOrder = 7
   end
 end
