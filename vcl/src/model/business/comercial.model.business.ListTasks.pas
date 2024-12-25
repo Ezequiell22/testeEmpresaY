@@ -5,7 +5,9 @@ interface
 uses
   comercial.model.business.interfaces,
   comercial.model.service.interfaces,
-  System.JSON, Vcl.Grids, Vcl.StdCtrls;
+  System.JSON,
+  Vcl.Grids,
+  Vcl.StdCtrls;
 
 type
   TModelBusinessListTasks = class(TInterfacedObject, iModelBusinessListTasks)
