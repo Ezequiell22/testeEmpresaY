@@ -38,3 +38,7 @@ executar comando
 - boss install
  -> pasta service
 - boss install
+
+### arquivo de importação para teste INSOMNIA
+
+importar arquivo Insomnia_2024-12-25
