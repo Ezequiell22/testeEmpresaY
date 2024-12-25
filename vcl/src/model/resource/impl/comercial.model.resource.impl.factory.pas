@@ -1,11 +1,11 @@
-unit api.model.resource.impl.factory;
+unit comercial.model.resource.impl.factory;
 
 interface
 
 uses
-  api.model.resource.interfaces,
-  api.model.resource.impl.conexaofiredac,
-  api.model.types;
+  comercial.model.resource.interfaces,
+  comercial.model.resource.impl.conexaofiredac,
+  comercial.model.types.Db;
 
 type
   TResource = class(TInterfacedObject, iResource)

@@ -1,4 +1,4 @@
-unit api.model.resource.impl.queryFiredac;
+unit comercial.model.resource.impl.queryFiredac;
 
 interface
 
@@ -7,9 +7,9 @@ uses
   FireDAC.Comp.Client,
   System.SysUtils,
   FireDac.stan.Param,
-  api.model.resource.impl.factory,
-  api.model.resource.interfaces,
-  api.model.types;
+  comercial.model.resource.impl.factory,
+  comercial.model.resource.interfaces,
+  comercial.model.types.Db;
 
 type
   TModelResourceQueryFiredac = class(TInterfacedObject, iQuery)

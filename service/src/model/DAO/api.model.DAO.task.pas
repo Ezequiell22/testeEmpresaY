@@ -9,7 +9,7 @@ uses
   api.model.resource.interfaces,
   api.model.resource.impl.queryFiredac,
   system.Generics.Collections,
-  api.model.types.Db;
+  api.model.types;
 
 type
   TModelDAOTask = class(TinterfacedObject, iModelDAOEntity<TModelEntityTask>)
@@ -131,14 +131,14 @@ begin
     Fquery.active(false)
     .sqlClear
     .sqlAdd('insert into task')
-    .sqlAdd('(id, DESCRIPTION, STATUS, PRIORITY, DATECREATED )')
+    .sqlAdd('(id, DESCRIPTION, STATUS, PRIORITY, DATE )')
     .sqlAdd('values ')
-    .sqlAdd('( :id, :DESCRIPTION, :STATUS, :PRIORITY, :DATECREATED )')
+    .sqlAdd('( :id, :DESCRIPTION, :STATUS, :PRIORITY, :DATE )')
     .addParam('ID', FEntity.ID)
     .addParam('DESCRIPTION', FEntity.DESCRIPTION)
     .addParam('STATUS', FEntity.STATUS)
     .addParam('PRIORITY', FEntity.PRIORITY)
-    .addParam('DATECREATED', NOW)
+    .addParam('DATE', NOW)
     .execSql
 
   except
@@ -166,10 +166,11 @@ begin
     Fquery.active(false)
     .sqlClear
     .sqlAdd('update task ')
-    .sqlAdd('set STATUS = :STATUS ')
+    .sqlAdd('set STATUS = :STATUS, DATE = :DATE ')
     .sqlAdd(' where ID = :ID')
     .addParam('ID', FEntity.ID)
     .addParam('STATUS', FEntity.STATUS)
+    .addParam('DATE', NOW)
     .execSql
 
   except

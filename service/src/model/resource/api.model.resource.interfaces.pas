@@ -3,8 +3,7 @@ unit api.model.resource.interfaces;
 interface
 
 uses
-  Data.DB,
-  api.model.types.DB;
+  Data.DB;
 
 type
   iConexao = interface

@@ -1,14 +1,14 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{E3CC9628-EE3F-451E-90A2-1DCAF299D807}</ProjectGuid>
+        <ProjectGuid>{3EB1CA41-992F-468C-AAD2-1C63F4F6CAE9}</ProjectGuid>
         <ProjectVersion>20.1</ProjectVersion>
-        <FrameworkType>None</FrameworkType>
+        <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
-        <TargetedPlatforms>1</TargetedPlatforms>
-        <AppType>Console</AppType>
-        <MainSource>Project1.dpr</MainSource>
+        <TargetedPlatforms>3</TargetedPlatforms>
+        <AppType>Application</AppType>
+        <MainSource>comercial.dpr</MainSource>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -34,9 +34,27 @@
         <Cfg_1>true</Cfg_1>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win64)'!=''">
+        <Cfg_1_Win64>true</Cfg_1_Win64>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
         <Cfg_2>true</Cfg_2>
         <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
+        <Cfg_2_Win64>true</Cfg_2_Win64>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
@@ -47,25 +65,30 @@
         <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <SanitizedProjectName>Project1</SanitizedProjectName>
-        <DCC_UnitSearchPath>..\modules\.dcp;..\modules\.dcu;..\modules;..\modules\horse\src;..\modules\horse-logger\src;..\modules\horse-utils-clientip\src;..\modules\delphi-jose-jwt\Source\Common;..\modules\delphi-jose-jwt\Source\JOSE;..\modules\delphi-jose-jwt\Source;..\modules\jhonson\src;modules\.dcp;modules\.dcu;modules;modules\delphi-jose-jwt\Source\Common;modules\delphi-jose-jwt\Source\JOSE;modules\delphi-jose-jwt\Source;modules\horse\src;modules\horse-basic-auth\src;..\modules\horse-basic-auth\src;modules\horse-logger\src;modules\horse-utils-clientip\src;modules\jhonson\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
+        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <SanitizedProjectName>comercial</SanitizedProjectName>
+        <DCC_UnitSearchPath>modules\.dcp;..\modules\.dcp;modules\.dcu;..\modules\.dcu;modules;..\modules;modules\restrequest4delphi\src;..\modules\restrequest4delphi\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>vclwinx;DataSnapServer;ACBr_BPeDabpeESCPOS;ACBr_TCP;ACBr_ONE;fmx;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;ACBr_OpenSSL;appanalytics;IndyProtocols;vclx;Skia.Package.RTL;dbxcds;vcledge;DBXFirebirdDriver;ACBr_NFCeECFVirtual;FireDACSqliteDriver;DbxClientDriver;soapmidas;ACBr_NF3eDANF3eESCPOS;ACBr_PagFor;dbexpress;ACBr_Reinf;inet;vcltouch;FireDACDBXDriver;fmxdae;CustomIPTransport;FireDACMSSQLDriver;ACBr_NFSeX;ACBr_NFe;IndySystem;ACBr_Diversos;ACBr_SAT;ACBr_CIOT;ACBr_TEFD;vclFireDAC;ACBr_SPED;ACBr_CTe;ACBr_SATWS;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;ACBr_SEF2;ACBr_LCDPR;bindcompdbx;rtl;FireDACMySQLDriver;ACBr_BPe;DBXSqliteDriver;ACBr_Sintegra;DBXSybaseASEDriver;ACBr_Serial;ACBr_Comum;ACBr_MDFe;ACBr_NFeDanfeESCPOS;vclimg;DataSnapFireDAC;inetdbxpress;FireDAC;xmlrtl;dsnap;FireDACDb2Driver;DBXOracleDriver;DBXInformixDriver;ACBr_SATECFVirtual;fmxobj;bindcompvclsmp;DataSnapNativeClient;DatasnapConnectorsFreePascal;ACBr_NF3e;ACBr_PAF;ACBr_OpenDelivery;ACBr_SPEDImportar;emshosting;FireDACCommonDriver;ACBr_ADRCST;ACBr_MTER;IndyIPClient;bindcompvclwinx;ACBr_Convenio115;emsedge;bindcompfmx;inetdb;FireDACASADriver;ACBr_LFD;vclactnband;fmxFireDAC;FireDACInfxDriver;DBXMySQLDriver;VclSmp;ACBr_Ponto;DataSnapCommon;fmxase;DBXOdbcDriver;dbrtl;FireDACOracleDriver;Skia.Package.FMX;ACBr_NFSe;ACBre_Social;FireDACMSAccDriver;DataSnapIndy10ServerTransport;DataSnapConnectors;ACBr_ANe;vcldsnap;DBXInterBaseDriver;FireDACMongoDBDriver;ACBR_DeSTDA;ACBr_GNRE;ACBr_EDI;FireDACTDataDriver;Skia.Package.VCL;vcldb;ACBr_Integrador;ACBr_PIXCD;bindcomp;IndyCore;RESTBackendComponents;FireDACADSDriver;RESTComponents;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;DBXDb2Driver;ACBr_Boleto;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;ACBr_BlocoX;ACBr_SATExtratoESCPOS;tethering;bindcompvcl;ACBr_GTIN;CloudService;DBXSybaseASADriver;ACBr_OFX;ACBr_PAFNFCe;ACBr_DebitoAutomatico;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
-        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
-        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>vclwinx;DataSnapServer;fmx;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;appanalytics;IndyProtocols;vclx;dbxcds;vcledge;DBXFirebirdDriver;FireDACSqliteDriver;DbxClientDriver;soapmidas;dbexpress;inet;vcltouch;FireDACDBXDriver;fmxdae;CustomIPTransport;FireDACMSSQLDriver;IndySystem;vclFireDAC;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;bindcompdbx;rtl;FireDACMySQLDriver;DBXSqliteDriver;DBXSybaseASEDriver;vclimg;DataSnapFireDAC;inetdbxpress;FireDAC;xmlrtl;dsnap;FireDACDb2Driver;DBXOracleDriver;DBXInformixDriver;fmxobj;bindcompvclsmp;DataSnapNativeClient;DatasnapConnectorsFreePascal;emshosting;FireDACCommonDriver;IndyIPClient;bindcompvclwinx;emsedge;bindcompfmx;inetdb;FireDACASADriver;vclactnband;fmxFireDAC;FireDACInfxDriver;DBXMySQLDriver;VclSmp;DataSnapCommon;fmxase;DBXOdbcDriver;dbrtl;FireDACOracleDriver;FireDACMSAccDriver;DataSnapIndy10ServerTransport;DataSnapConnectors;vcldsnap;DBXInterBaseDriver;FireDACMongoDBDriver;FireDACTDataDriver;Skia.Package.VCL;vcldb;bindcomp;IndyCore;RESTBackendComponents;FireDACADSDriver;RESTComponents;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;DBXDb2Driver;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;tethering;bindcompvcl;CloudService;DBXSybaseASADriver;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
-        <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
-        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
-        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+        <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -79,6 +102,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -86,24 +115,40 @@
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+    </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="src\model\business\api.model.business.Task.pas"/>
-        <DCCReference Include="src\model\business\api.model.business.interfaces.pas"/>
-        <DCCReference Include="src\model\DAO\api.model.DAO.task.pas"/>
-        <DCCReference Include="src\model\DAO\api.model.DAO.interfaces.pas"/>
-        <DCCReference Include="src\model\entity\api.model.entity.task.pas"/>
-        <DCCReference Include="src\model\resource\api.model.resource.interfaces.pas"/>
-        <DCCReference Include="src\model\resource\impl\api.model.resource.impl.conexaofiredac.pas"/>
-        <DCCReference Include="src\model\resource\impl\api.model.resource.impl.factory.pas"/>
-        <DCCReference Include="src\model\resource\impl\api.model.resource.impl.queryFiredac.pas"/>
-        <DCCReference Include="src\model\types\api.model.types.Db.pas"/>
-        <DCCReference Include="src\controller\api.controller.business.pas"/>
-        <DCCReference Include="src\controller\api.controller.entity.pas"/>
-        <DCCReference Include="src\controller\api.controller.interfaces.pas"/>
-        <DCCReference Include="src\controller\api.controller.pas"/>
+        <DCCReference Include="src\view\comercial.view.index.pas">
+            <Form>frmIndex</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\controller\comercial.controller.business.pas"/>
+        <DCCReference Include="src\controller\comercial.controller.interfaces.pas"/>
+        <DCCReference Include="src\controller\comercial.controller.pas"/>
+        <DCCReference Include="src\model\behaviors\comercial.model.behaviors.LogException.pas"/>
+        <DCCReference Include="src\model\business\comercial.model.business.interfaces.pas"/>
+        <DCCReference Include="src\model\business\comercial.model.business.ListTasks.pas"/>
+        <DCCReference Include="src\view\comercial.view.ListTasks.pas">
+            <Form>pageListTasks</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\model\business\comercial.model.business.Task.pas"/>
+        <DCCReference Include="src\view\comercial.view.Task.pas">
+            <Form>pageTask</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\model\service\comercial.model.service.Requester.pas"/>
+        <DCCReference Include="src\model\service\comercial.model.service.RequesterFactory.pas"/>
+        <DCCReference Include="src\model\service\comercial.model.service.Task.pas"/>
+        <DCCReference Include="src\model\service\comercial.model.service.interfaces.pas"/>
+        <DCCReference Include="src\view\utils\comercial.view.utils.types.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -122,28 +167,17 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">Project1.dpr</Source>
+                    <Source Name="MainSource">comercial.dpr</Source>
                 </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
-                    <Platform Name="iOSSimulator">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
-                    <Platform Name="iOSSimulator">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
-                    <Platform Name="OSX32">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Win32\Debug\Project1.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\comercial.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>Project1.exe</RemoteName>
+                        <RemoteName>comercial.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1096,7 +1130,7 @@
             </Deployment>
             <Platforms>
                 <Platform value="Win32">True</Platform>
-                <Platform value="Win64">False</Platform>
+                <Platform value="Win64">True</Platform>
             </Platforms>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>

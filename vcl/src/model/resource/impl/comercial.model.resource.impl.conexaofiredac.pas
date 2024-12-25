@@ -1,4 +1,4 @@
-unit api.model.resource.impl.conexaofiredac;
+unit comercial.model.resource.impl.conexaofiredac;
 
 interface
 
@@ -13,7 +13,7 @@ uses
   FireDAC.Stan.Pool,
   FireDAC.Stan.Async,
   FireDAC.Phys,
-  FireDAC.Phys.MSSQL,
+  FireDAC.Phys.FB,
   FireDAC.DApt,
   FireDAC.Phys.SQLiteDef,
   FireDAC.Stan.ExprFuncs,
@@ -21,15 +21,17 @@ uses
   FireDAC.VCLUI.Wait,
   FireDAC.Comp.UI,
   FireDAC.Comp.Client,
-  api.model.resource.interfaces,
+  comercial.model.resource.interfaces,
   Data.DB,
-  api.model.types;
+  comercial.model.types.DB,
+  FireDAC.Phys.IB;
 
 type
   TmodelResourceConexaoFiredac = class(TInterfacedObject, iConexao)
   private
     FConn: TFDConnection;
     FdataBaseName: TDataBaseType;
+    FDPhysIBDriverLink: TFDPhysIBDriverLink;
   public
     constructor Create(aDataBase: TDataBaseType);
     destructor Destroy; override;
@@ -46,16 +48,22 @@ function TmodelResourceConexaoFiredac.Connect: TCustomConnection;
 begin
   try
     FConn.Params.Clear;
-
-    if FdataBaseName = tcTeste then
+    if FdataBaseName = tcSQlServerErechimProducao then
+    begin
+      //
+    end
+    else if FdataBaseName = tcFBTeste then
     begin
 
-      FConn.Params.DriverID := 'MSSQL';
-      FConn.Params.Database := 'teste';
-      FConn.Params.Add('OSAuthent=Yes');
-      FConn.Params.Add('Encrypt=no');
-      FConn.Params.Add('Server=DESKTOP-180BIC5');
-
+      FConn.Params.DriverID := 'FB';
+      FConn.Params.Database := 'C:\testeEmpresa\DADOS.FDB';
+      FConn.Params.UserName := 'SYSDBA';
+      FConn.Params.Password := 'masterkey';
+      FDPhysIBDriverLink.VendorLib := 'fbClient.dll';
+    end
+    else if FdataBaseName = tcSqlServerSped then
+    begin
+      //
     end;
 
     FConn.Connected := True;
@@ -71,11 +79,13 @@ constructor TmodelResourceConexaoFiredac.Create(aDataBase: TDataBaseType);
 begin
   FConn := TFDConnection.Create(nil);
   FdataBaseName := aDataBase;
+  FDPhysIBDriverLink := TFDPhysIBDriverLink.Create(nil);
 end;
 
 destructor TmodelResourceConexaoFiredac.Destroy;
 begin
   FConn.Free;
+  FDPhysIBDriverLink.Free;
   inherited;
 end;
 

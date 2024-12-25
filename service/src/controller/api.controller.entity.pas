@@ -6,7 +6,6 @@ uses
   api.controller.interfaces,
   api.model.DAO.interfaces,
   api.model.resource.interfaces,
-  api.model.types.Db,
   api.model.entity.task;
 
 type

@@ -1,4 +1,4 @@
-program Project1;
+program Api;
 
 {$APPTYPE CONSOLE}
 {$R *.res}
@@ -19,7 +19,7 @@ uses
   api.model.resource.impl.conexaofiredac in 'src\model\resource\impl\api.model.resource.impl.conexaofiredac.pas',
   api.model.resource.impl.factory in 'src\model\resource\impl\api.model.resource.impl.factory.pas',
   api.model.resource.impl.queryFiredac in 'src\model\resource\impl\api.model.resource.impl.queryFiredac.pas',
-  api.model.types.Db in 'src\model\types\api.model.types.Db.pas',
+  api.model.types in 'src\model\types\api.model.types.pas',
   api.controller.business in 'src\controller\api.controller.business.pas',
   api.controller.entity in 'src\controller\api.controller.entity.pas',
   api.controller.interfaces in 'src\controller\api.controller.interfaces.pas',
@@ -115,9 +115,7 @@ begin
 end;
 
 begin
-
   try
-
     ConfigureRoutes;
     Writeln('Server is running on http://localhost:8080');
 

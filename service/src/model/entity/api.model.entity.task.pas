@@ -14,10 +14,9 @@ type
     FParent: iModelDAOEntity<TModelEntityTask>;
     FID: integer;
     FDESCRIPTION: String;
-    FSTATUS: String;// created - pendent - done
-    FPRIORITY: integer; // 0 a 10
-    FDATECREATED: TDatetime;
-
+    FSTATUS: integer; // 0 a 3
+    FPRIORITY: integer; // 0 a 2
+    FDATE: TDatetime;
   public
     constructor Create(aParent: iModelDAOEntity<TModelEntityTask>);
     destructor Destroy; override;
@@ -25,12 +24,12 @@ type
     function ID: integer; overload;
     function DESCRIPTION(aValue: string): TModelEntityTask; overload;
     function DESCRIPTION: string; overload;
-    function STATUS(aValue: string): TModelEntityTask; overload;
-    function STATUS: string; overload;
+    function STATUS(aValue: integer): TModelEntityTask; overload;
+    function STATUS: integer; overload;
     function PRIORITY(aValue: integer): TModelEntityTask; overload;
     function PRIORITY: integer; overload;
-    function DATECREATED(aValue: TDatetime): TModelEntityTask; overload;
-    function DATECREATED: TDatetime; overload;
+    function DATE(aValue: TDatetime): TModelEntityTask; overload;
+    function DATE: TDatetime; overload;
     function &End: iModelDAOEntity<TModelEntityTask>;
   end;
 
@@ -46,15 +45,15 @@ begin
   FParent := aParent;
 end;
 
-function TModelEntityTask.DATECREATED(aValue: TDatetime): TModelEntityTask;
+function TModelEntityTask.DATE(aValue: TDatetime): TModelEntityTask;
 begin
   result := Self;
-  FDATECREATED := aValue;
+  FDATE := aValue;
 end;
 
-function TModelEntityTask.DATECREATED: TDatetime;
+function TModelEntityTask.DATE: TDatetime;
 begin
-  result := FDATECREATED;
+  result := FDATE;
 end;
 
 function TModelEntityTask.DESCRIPTION: string;
@@ -101,13 +100,13 @@ begin
   FPRIORITY := aValue;
 end;
 
-function TModelEntityTask.STATUS(aValue: string): TModelEntityTask;
+function TModelEntityTask.STATUS(aValue: integer): TModelEntityTask;
 begin
   result := Self;
   FSTATUS := aValue;
 end;
 
-function TModelEntityTask.STATUS: string;
+function TModelEntityTask.STATUS: integer;
 begin
   result := FSTATUS;
 end;
